@@ -18,9 +18,13 @@ public class RoundRobin {
                 " queue_id: " + process.queue_id +
                 " priority: " + process.priority +
                 " computing_time: " + process.computing_time +
-                " turn_around_tiem: " + process.trun_around_time
+                " turn_around_time: " + process.turn_around_time
             );
         }
-        processes.clear();
+//        processes.clear();
+    }
+
+    void rrRun() {
+
     }
 }
