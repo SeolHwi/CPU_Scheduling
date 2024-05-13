@@ -21,5 +21,6 @@ public class RoundRobin {
                 " turn_around_tiem: " + process.trun_around_time
             );
         }
+        processes.clear();
     }
 }
