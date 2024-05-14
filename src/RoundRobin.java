@@ -32,6 +32,7 @@ public class RoundRobin {
     }
 
     void rrRun() {
+        Collections.sort(realtime, new SortArrayList());
         for (Process process : realtime) {
             System.out.println(
                 "process_id: " + process.process_id +
@@ -42,6 +43,7 @@ public class RoundRobin {
         }
         realtime.clear();
 
+        Collections.sort(Q1, new SortArrayList());
         for (Process process : Q1) {
             System.out.println(
                 "process_id: " + process.process_id +
