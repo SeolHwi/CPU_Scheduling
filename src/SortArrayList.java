@@ -1,7 +1,7 @@
 // ArrayList를 정렬하기 위한 클래스
 import java.util.Comparator;
 
-public class SortArrayList implements Comparator<Process> {
+class SortArrayList implements Comparator<Process> {
 
     @Override
     public int compare(Process o1, Process o2) {

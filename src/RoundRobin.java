@@ -1,21 +1,21 @@
 
 import java.util.*;
 
-public class RoundRobin {
+class RoundRobin {
     private static final int time_quantum = 20;         // time quantum
 //    private static final int QUEUES = 5;                // 큐의 갯수
 
     // 큐 생성
-    ArrayList<Process> realtime = new ArrayList<>();
-    ArrayList<Process> Q1 = new ArrayList<>();
-    ArrayList<Process> Q2 = new ArrayList<>();
-    ArrayList<Process> Q3 = new ArrayList<>();
-    ArrayList<Process> Q4 = new ArrayList<>();
+    private ArrayList<Process> realtime = new ArrayList<>();
+    private ArrayList<Process> Q1 = new ArrayList<>();
+    private ArrayList<Process> Q2 = new ArrayList<>();
+    private ArrayList<Process> Q3 = new ArrayList<>();
+    private ArrayList<Process> Q4 = new ArrayList<>();
     
     int start_time = 0;       // computing time과 turn around time 계산에 사용할 변수
 
     // 프로세스를 ArrayList에 저장
-    void add(ArrayList<Process> arrayList, Process process) {
+    private void add(ArrayList<Process> arrayList, Process process) {
         arrayList.add(process);
     }
     

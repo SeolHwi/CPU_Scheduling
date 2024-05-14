@@ -1,7 +1,7 @@
 
 
 
-public class Process {
+class Process {
 
     private int process_id;
     private int priority;
