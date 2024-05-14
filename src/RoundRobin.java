@@ -33,7 +33,6 @@ public class RoundRobin {
 
     void rrRun() {
         Collections.sort(realtime, new SortArrayList());
-        // sort된 arraylist 반전 시켜야 함.
         for (Process process : realtime) {
             System.out.println(
                 "process_id: " + process.process_id +
