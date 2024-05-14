@@ -4,7 +4,6 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Process process = null;
         RoundRobin roundRobin = new RoundRobin();
 
         System.out.println("실행 시 1 0 0 0 입력 / 종료 시 -1 입력");
@@ -27,14 +26,14 @@ public class Main {
                 }
 
                 // 큐에 프로세스 추가
-                process = new Process(process_id, priority, computing_time);
-                roundRobin.add(process);
+                Process process = new Process(process_id, priority, computing_time);
+                roundRobin.add(roundRobin.processes, process);
             } else if (type == 1) {
                 scanner.nextInt();              // 0 입력
                 scanner.nextInt();              // 0 입력
                 scanner.nextInt();              // 0 입력
                 // 큐에 있는 프로세스 실행
-                roundRobin.example();
+                roundRobin.rrRun();
             }
         }
     }
