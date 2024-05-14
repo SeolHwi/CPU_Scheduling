@@ -11,6 +11,8 @@ public class RoundRobin {
     ArrayList<Process> Q2 = new ArrayList<>();
     ArrayList<Process> Q3 = new ArrayList<>();
     ArrayList<Process> Q4 = new ArrayList<>();
+    
+    int start_time = 0;       // computing time과 turn around time 계산에 사용할 변수
 
     // 프로세스를 ArrayList에 저장
     void add(ArrayList<Process> arrayList, Process process) {
@@ -19,13 +21,13 @@ public class RoundRobin {
     
     // 프로세스를 priority에 따라 큐에 분류
     void classification(Process process) {
-        if (process.priority < 0)               // priority가 -10 이상 0 미만인 경우
+        if (process.getPriority() < 0)               // priority가 -10 이상 0 미만인 경우
             add(realtime, process);
-        else if (process.priority <= 10)        // priority가 1 이상 10 이하인 경우
+        else if (process.getPriority() <= 10)        // priority가 1 이상 10 이하인 경우
             add(Q1, process);
-        else if (process.priority <= 20)        // priority가 11 이상 20 이하인 경우
+        else if (process.getPriority() <= 20)        // priority가 11 이상 20 이하인 경우
             add(Q2, process);
-        else if (process.priority <= 30)        // priority가 21 이상 30 이하인 경우
+        else if (process.getPriority() <= 30)        // priority가 21 이상 30 이하인 경우
             add(Q3, process);
         else                                    // priority가 31 인 경우
             add(Q4, process);
@@ -33,25 +35,71 @@ public class RoundRobin {
 
     void rrRun() {
         Collections.sort(realtime, new SortArrayList());
-        for (Process process : realtime) {
+        Collections.sort(Q1, new SortArrayList());
+        Collections.sort(Q2, new SortArrayList());
+        Collections.sort(Q3, new SortArrayList());
+        Collections.sort(Q4, new SortArrayList());
+
+        int time = 0;
+
+        while (!realtime.isEmpty()) {
             System.out.println(
-                "process_id: " + process.process_id +
-                " priority: " + process.priority +
-                " computing_time: " + process.computing_time +
-                " turn_around_time: " + process.turn_around_time
+                "process_id: " + realtime.get(0).getProcess_id() +
+                " priority: " + realtime.get(0).getPriority() +
+                " computing_time: " + realtime.get(0).getComputing_time() +
+                " turn_around_time: " + realtime.get(0).getTurn_around_time()
             );
+
+            realtime.remove(0);
         }
         realtime.clear();
 
-        Collections.sort(Q1, new SortArrayList());
-        for (Process process : Q1) {
+        while (!Q1.isEmpty()) {
             System.out.println(
-                "process_id: " + process.process_id +
-                " priority: " + process.priority +
-                " computing_time: " + process.computing_time +
-                " turn_around_time: " + process.turn_around_time
+                "process_id: " + Q1.get(0).getProcess_id() +
+                " priority: " + Q1.get(0).getPriority() +
+                " computing_time: " + Q1.get(0).getComputing_time() +
+                " turn_around_time: " + Q1.get(0).getTurn_around_time()
             );
+
+            Q1.remove(0);
         }
         Q1.clear();
+
+        while (!Q2.isEmpty()) {
+            System.out.println(
+                "process_id: " + Q2.get(0).getProcess_id() +
+                " priority: " + Q2.get(0).getPriority() +
+                " computing_time: " + Q2.get(0).getComputing_time() +
+                " turn_around_time: " + Q2.get(0).getTurn_around_time()
+            );
+
+            Q2.remove(0);
+        }
+        Q2.clear();
+
+        while (!Q3.isEmpty()) {
+            System.out.println(
+                "process_id: " + Q3.get(0).getProcess_id() +
+                " priority: " + Q3.get(0).getPriority() +
+                " computing_time: " + Q3.get(0).getComputing_time() +
+                " turn_around_time: " + Q3.get(0).getTurn_around_time()
+            );
+
+            Q3.remove(0);
+        }
+        Q3.clear();
+
+        while (!Q4.isEmpty()) {
+            System.out.println(
+                "process_id: " + Q4.get(0).getProcess_id() +
+                " priority: " + Q4.get(0).getPriority() +
+                " computing_time: " + Q4.get(0).getComputing_time() +
+                " turn_around_time: " + Q4.get(0).getTurn_around_time()
+            );
+
+            Q4.remove(0);
+        }
+        Q4.clear();
     }
 }

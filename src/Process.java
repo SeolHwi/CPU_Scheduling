@@ -3,11 +3,12 @@
 
 public class Process {
 
-    int process_id;
-    int priority;
-    int computing_time;
-    int turn_around_time;
+    private int process_id;
+    private int priority;
+    private int computing_time;
+    private int turn_around_time;
     
+    // 프로세스 생성
     Process (int process_id, int priority, int computing_time) {
         this.process_id = process_id;
         this.priority = priority;
@@ -15,11 +16,19 @@ public class Process {
         this.turn_around_time = 0;
     }
 
+    public int getProcess_id() {
+        return process_id;
+    }
+
     public int getPriority() {
         return priority;
     }
     public void setPriority(int priority) {
         this.priority = priority;
+    }
+
+    public int getComputing_time() {
+        return computing_time;
     }
 
     public int getTurn_around_time() {
