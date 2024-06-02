@@ -51,7 +51,7 @@ public class Queue {
     }
 
     // 큐가 비었는지 확인
-    public boolean isQueueEmpty(int index) {
+    public boolean isEmptyQueue(int index) {
         return queues.get(index).isEmpty();
     }
 

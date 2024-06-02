@@ -4,12 +4,16 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         RoundRobbin roundRobin = new RoundRobbin();
+        Queue queue = new Queue();
 
         System.out.println("실행 시 1 0 0 0 입력 / 종료 시 -1 입력");
         while (true) {
             int type = scanner.nextInt();
             if (type == -1) {                   // 입력 종료
                 System.out.println("입력 종료.");
+                while (!roundRobin.allQueuesEmpty()) {
+                    roundRobin.rrRun();
+                }
                 break;
             }
             else if (type == 0) {
