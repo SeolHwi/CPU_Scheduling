@@ -43,17 +43,17 @@ class RoundRobbin {
 
             if (!queueName.equals("real_time")) {
                 process.setPriority();
-                classification(process);
-
-                System.out.println(
-                        " process_id: " + process.getProcess_id() +
-                        " Queue id: " + queueName +
-                        " priority: " + process.getPriority() +
-                        " computing_time: " + process.getComputing_time() +
-                        " processing_time: " + process.getProcessing_time() +
-                        " turn_around_time: " + process.getTurn_around_time()
-                );
             }
+            classification(process);
+
+            System.out.println(
+                    " process_id: " + process.getProcess_id() +
+                    " Queue id: " + queueName +
+                    " priority: " + process.getPriority() +
+                    " computing_time: " + process.getComputing_time() +
+                    " processing_time: " + process.getProcessing_time() +
+                    " turn_around_time: " + process.getTurn_around_time()
+            );
         } else {
             System.out.println(
                     "완료!! " +
