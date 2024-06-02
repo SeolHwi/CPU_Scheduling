@@ -14,20 +14,21 @@ class RoundRobin {
         queue.classification(process);
     }
 
-    void rrRun() throws InterruptedException {
+    void rrRun() {
         for (int i = 0; i < queue.getQueueNum(); i++) {
             if (!queue.isQueueEmpty(i)) {
-                processQueue(queue.getQueue(i));
+                processQueue(queue.getQueue(i), queue.getQueueName(i));
             }
-            System.out.println("Queue" + i + "is empty");
+            System.out.println(queue.getQueueName(i) + " is empty");
         }
     }
 
-    private void processQueue(ArrayList<Process> queue) {
+    private void processQueue(ArrayList<Process> queue, String name) {
         while (!queue.isEmpty()) {
             System.out.println(
                 "process_id: " + queue.get(0).getProcess_id() +
                 " priority: " + queue.get(0).getPriority() +
+                " Queue id: " + name +
                 " computing_time: " + queue.get(0).getComputing_time() +
                 " turn_around_time: " + queue.get(0).getTurn_around_time()
             );

@@ -5,6 +5,7 @@ public class Queue {
 
     // Process를 담는 ArrayList들을 리스트로 만든 queues
     private List<ArrayList<Process>> queues;
+    private List<String> queueNames;
 
     // 큐 생성
     public Queue() {
@@ -14,6 +15,9 @@ public class Queue {
                 new ArrayList<>(),      // Q2
                 new ArrayList<>(),      // Q3
                 new ArrayList<>()       // Q4
+        ));
+        queueNames = new ArrayList<>(Arrays.asList(
+                "real_time", "Q1", "Q2", "Q3", "Q4"
         ));
     }
 
@@ -39,6 +43,11 @@ public class Queue {
             add(queues.get(3), process);
         else                                    // priority가 31 인 경우
             add(queues.get(4), process);
+    }
+
+    // 큐 이름 리턴
+    public String getQueueName(int index) {
+        return queueNames.get(index);
     }
 
     // 큐가 비었는지 확인
