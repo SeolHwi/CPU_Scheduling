@@ -21,25 +21,25 @@ class RoundRobbin {
     }
 
     void rrRun() {
-        processQueue(0);
+        processQueue(0, TIME_QUANTUM);
     }
 
-    private void processQueue(int queueIndex) {
+    private void processQueue(int queueIndex, int running_time) {
 
         ArrayList<Process> currentQueue = queue.getQueue(queueIndex);
         String queueName = queue.getQueueName(queueIndex);
 
         if (currentQueue.isEmpty()) {
             System.out.println(queueName + " is Empty.");
-            processQueue(queueIndex + 1);
+            processQueue(queueIndex + 1, TIME_QUANTUM);
             return;
         }
 
         Process process = currentQueue.remove(0);
-        int remainingTime =  process.getProcessing_time();
+        int remainingTime =  process.getRemaining_time();
 
-        if (remainingTime > TIME_QUANTUM) {
-            process.setProcessing_time(remainingTime - TIME_QUANTUM);
+        if (remainingTime > running_time) {
+            process.setRemaining_time(remainingTime - running_time);
 
             if (!queueName.equals("real_time")) {
                 process.setPriority();
@@ -51,7 +51,7 @@ class RoundRobbin {
                     " Queue id: " + queueName +
                     " priority: " + process.getPriority() +
                     " computing_time: " + process.getComputing_time() +
-                    " processing_time: " + process.getProcessing_time() +
+                    " processing_time: " + process.getRemaining_time() +
                     " turn_around_time: " + process.getTurn_around_time()
             );
         } else {
@@ -64,10 +64,12 @@ class RoundRobbin {
                     " turn_around_time: " + process.getTurn_around_time()
             );
 
-//            if (!currentQueue.isEmpty())
-//                processQueue(queueIndex);
-//            else if (queueIndex + 1 < queue.getQueueNum())
-//                processQueue(queueIndex + 1);
+            if (remainingTime < running_time) {
+                if (!currentQueue.isEmpty())
+                    processQueue(queueIndex, running_time - remainingTime);
+                else if (queueIndex + 1 < queue.getQueueNum())
+                    processQueue(queueIndex + 1, running_time - remainingTime);
+            }
         }
     }
 }
