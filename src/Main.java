@@ -1,17 +1,19 @@
 import java.util.*;
 
 public class Main {
+    private static final int MAX_PRIORITY = 31;         // priority 최대값
+    private static final int MIN_PRIORITY = -10;         // priority 최솟값
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         RoundRobbin roundRobin = new RoundRobbin();
-        Queue queue = new Queue();
 
         System.out.println("실행 시 1 0 0 0 입력 / 종료 시 -1 입력");
         while (true) {
             int type = scanner.nextInt();
             if (type == -1) {                   // 입력 종료
                 System.out.println("입력 종료.");
-                while (!roundRobin.allQueuesEmpty()) {
+                while (!roundRobin.allQueuesEmpty()) {      // 모든 큐가 빌 때까지 반복 실행
                     roundRobin.rrRun();
                 }
                 break;
@@ -21,9 +23,9 @@ public class Main {
                 int priority = scanner.nextInt();
                 int computing_time = scanner.nextInt();
 
-                if (priority > 30)              // priority가 30을 초과한 경우 31로 고정
-                    priority = 31;
-                else if (priority < -10) {      // priority가 -10 미만인 경우 메세지 출력 후 큐에 넣지 않음
+                if (priority > MAX_PRIORITY)              // priority가 30을 초과한 경우 31로 고정
+                    priority = MAX_PRIORITY;
+                else if (priority < MIN_PRIORITY) {      // priority가 -10 미만인 경우 메세지 출력 후 큐에 넣지 않음
                     System.out.println("priority 값은 -10 미만으로 설정할 수 없습니다.");
                     continue;                   // 잘못 입력된 값 무시 후 계속하여 입력
                 }

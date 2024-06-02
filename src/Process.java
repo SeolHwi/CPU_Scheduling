@@ -11,11 +11,12 @@ class Process {
     private int process_id;             // 프로세스 아이디
     private int priority;               // 우선순위
     private int computing_time;         // 프로세스 수행 시간
-    private int remaining_time;        // 프로세스 남은 수행 시간
+    private int remaining_time;         // 프로세스 남은 수행 시간
     private int turn_around_time;       // 완료 시간 - 프로세스 실행 시작 시간
     
     // 프로세스 생성
     Process (int process_id, int priority, int computing_time) {
+        // 초깃값
         this.start_time = 0;
         this.end_time = 0;
         this.process_id = process_id;
@@ -24,6 +25,8 @@ class Process {
         this.remaining_time = computing_time;
         this.turn_around_time = 0;
     }
+
+    // Getter, Setter
 
     public void setStart_time(int time) {
         this.start_time = time;

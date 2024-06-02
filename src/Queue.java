@@ -33,15 +33,15 @@ public class Queue {
 
     // 프로세스를 priority에 따라 큐에 분류
     void classification(Process process) {
-        if (process.getPriority() < 0)               // priority가 -10 이상 0 미만인 경우
+        if (process.getPriority() < 0)              // priority가 -10 이상 0 미만인 경우
             add(queues.get(0), process);
-        else if (process.getPriority() <= 10)        // priority가 1 이상 10 이하인 경우
+        else if (process.getPriority() <= 10)       // priority가 1 이상 10 이하인 경우
             add(queues.get(1), process);
-        else if (process.getPriority() <= 20)        // priority가 11 이상 20 이하인 경우
+        else if (process.getPriority() <= 20)       // priority가 11 이상 20 이하인 경우
             add(queues.get(2), process);
-        else if (process.getPriority() <= 30)        // priority가 21 이상 30 이하인 경우
+        else if (process.getPriority() <= 30)       // priority가 21 이상 30 이하인 경우
             add(queues.get(3), process);
-        else                                    // priority가 31 인 경우
+        else                                        // priority가 31 인 경우
             add(queues.get(4), process);
     }
 
