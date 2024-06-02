@@ -26,18 +26,16 @@ class Process {
         return priority;
     }
     public void setPriority(int priority) {
-        this.priority += priority;
+        this.priority = priority;
     }
 
-    public int getComputing_time() {
-        return computing_time;
-    }
+    public int getComputing_time() { return computing_time; }
 
     public int getProcessing_time() {
         return processing_time;
     }
     public void setProcessing_time(int time) {
-        this.processing_time -= time;
+        this.processing_time = time;
     }
 
     public int getTurn_around_time() { return turn_around_time; }
