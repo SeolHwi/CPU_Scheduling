@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        RoundRobbin roundRobin = new RoundRobbin();
+        RoundRobin roundRobin = new RoundRobin();
 
         System.out.println("실행 시 1 0 0 0 입력 / 종료 시 -1 입력");
         while (true) {

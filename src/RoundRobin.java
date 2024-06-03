@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-class RoundRobbin {
+class RoundRobin {
     private static final int TIME_QUANTUM = 20;         // time quantum
     static int currentTime = 0;                         // 현재 시간
 
