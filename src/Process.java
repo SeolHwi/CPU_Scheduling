@@ -30,46 +30,26 @@ class Process {
 
     // Getter, Setter
 
-    public int getStart_time() {
-        return start_time;
-    }
     public void setStart_time(int time) {
         this.start_time = time;
     }
-    public int getEnd_time() {
-        return end_time;
-    }
-    public void setEnd_time(int time) {
-        this.end_time = time;
-    }
+    public void setEnd_time(int time) { this.end_time = time; }
 
-    public int getProcess_id() {
-        return process_id;
-    }
+    public int getProcess_id() { return process_id; }
 
-    public int getPriority() {
-        return priority;
-    }
+    public int getPriority() { return priority; }
     public void setPriority() {
         priority += PLUS_PRIORITY;
         if (priority > MAX_PRIORITY) { priority = MAX_PRIORITY; }
     }
 
-    public int getComputing_time() {
-        return computing_time;
-    }
+    public int getComputing_time() { return computing_time; }
 
     public int getRemaining_time() { return remaining_time; }
-    public void setRemaining_time(int time) {
-        this.remaining_time = time;
-    }
+    public void setRemaining_time(int time) { this.remaining_time = time; }
 
-    public int getTurn_around_time() {
-        return turn_around_time;
-    }
-    public void setTurn_around_time() {
-        turn_around_time = end_time - start_time;
-    }
+    public int getTurn_around_time() { return turn_around_time; }
+    public void setTurn_around_time() { turn_around_time = end_time - start_time; }
 
     public boolean getIsNewProcess() { return isNewProcess; }
     public void setIsNewProcess(boolean isNew) { isNewProcess = isNew; }

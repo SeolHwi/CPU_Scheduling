@@ -11,12 +11,10 @@ class SortArrayList implements Comparator<Process> {
         int priority2 = o2.getPriority();
 
         // priority가 하나만 음수여도 realtime으로 실행되는 프로세스
-        if (priority1 < 0) {
+        if (priority1 < 0)
             return Integer.compare(priority2, priority1);
-        }
         // priority가 양수인 경우
-        else {
+        else
             return Integer.compare(priority1, priority2);
-        }
     }
 }
