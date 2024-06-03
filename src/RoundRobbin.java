@@ -3,11 +3,16 @@ import java.util.*;
 
 class RoundRobbin {
     private static final int TIME_QUANTUM = 20;         // time quantum
+    static int currentTime = 0;                         // 현재 시간
 
     private Queue queue = new Queue();
 
     // 프로세스를 priority에 따라 큐에 분류
     void classification(Process process) {
+        if (process.getIsNewProcess()) {
+            process.setStart_time(currentTime);
+            process.setIsNewProcess(false);
+        }
         queue.classification(process);
     }
 
@@ -27,7 +32,7 @@ class RoundRobbin {
 
     private void processQueue(int queueIndex, int runningTime) {
 
-        ArrayList<Process> currentQueue = queue.getQueue(queueIndex);
+        PriorityQueue<Process> currentQueue = queue.getQueue(queueIndex);
         String queueName = queue.getQueueName(queueIndex);
 
         if (currentQueue.isEmpty()) {                   // 현재 큐가 비어있는 경우
@@ -36,23 +41,36 @@ class RoundRobbin {
             return;
         }
 
-        Process process = currentQueue.remove(0);       // 현재 큐에서 프로세스 추출
+        Process process = currentQueue.poll();       // 변경된 부분: remove(0) -> poll()
+//        Process process = currentQueue.remove(0);       // 현재 큐에서 프로세스 추출
         int remainingTime =  process.getRemaining_time();
 
         if (remainingTime > runningTime) {
+            currentTime += runningTime;
             process.setRemaining_time(remainingTime - runningTime);
 
             if (!queueName.equals("real_time"))         // 큐가 real time이 아닌 경우 priority에 10 추가
                 process.setPriority();
             classification(process);                    // priority로 큐에 분류
 
+            System.out.println(
+                    " process_id: " + process.getProcess_id() +
+                    " prirority: " + process.getPriority() +
+                    " remaining_time: " + process.getRemaining_time() +
+                    " start_time: " + process.getStart_time()
+            );
         } else {
+            currentTime += remainingTime;
+            process.setEnd_time(currentTime);
+            process.setTurn_around_time();
             System.out.println(
                     "완료!! " +
                     " process_id: " + process.getProcess_id() +
                     " Queue id: " + queueName +
                     " priority: " + process.getPriority() +
                     " computing_time: " + process.getComputing_time() +
+                    " start_time: " + process.getStart_time() +
+                    " end_time:" + process.getEnd_time() +
                     " turn_around_time: " + process.getTurn_around_time()
             );
 
