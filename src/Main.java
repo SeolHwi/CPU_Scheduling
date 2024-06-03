@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class Main {
+    private static final int TIME_QUANTUM = 20;         // time quantum
     private static final int MAX_PRIORITY = 31;         // priority 최대값
     private static final int MIN_PRIORITY = -10;         // priority 최솟값
 
@@ -14,7 +15,7 @@ public class Main {
             if (type == -1) {                   // 입력 종료
                 System.out.println("입력 종료.");
                 while (!roundRobin.allQueuesEmpty()) {      // 모든 큐가 빌 때까지 반복 실행
-                    roundRobin.rrRun();
+                    roundRobin.rrRun(0, TIME_QUANTUM);
                 }
                 break;
             }
@@ -43,7 +44,7 @@ public class Main {
                 scanner.nextInt();              // 0 입력
                 scanner.nextInt();              // 0 입력
                 // 큐에 있는 프로세스 실행
-                roundRobin.rrRun();
+                roundRobin.rrRun(0, TIME_QUANTUM);
             }
         }
     }
