@@ -13,6 +13,7 @@ class Process {
     private int computing_time;         // 프로세스 수행 시간
     private int remaining_time;         // 프로세스 남은 수행 시간
     private int turn_around_time;       // 완료 시간 - 프로세스 실행 시작 시간
+    private boolean isNewProcess;       // 다른 큐로 이동한 프로세스인지 처음으로 실행된 프로세스인지 판별
     
     // 프로세스 생성
     Process (int process_id, int priority, int computing_time) {
@@ -24,12 +25,19 @@ class Process {
         this.computing_time = computing_time;
         this.remaining_time = computing_time;
         this.turn_around_time = 0;
+        isNewProcess = true;
     }
 
     // Getter, Setter
 
+    public int getStart_time() {
+        return start_time;
+    }
     public void setStart_time(int time) {
         this.start_time = time;
+    }
+    public int getEnd_time() {
+        return end_time;
     }
     public void setEnd_time(int time) {
         this.end_time = time;
@@ -62,5 +70,8 @@ class Process {
     public void setTurn_around_time() {
         turn_around_time = end_time - start_time;
     }
+
+    public boolean getIsNewProcess() { return isNewProcess; }
+    public void setIsNewProcess(boolean isNew) { isNewProcess = isNew; }
 
 }
