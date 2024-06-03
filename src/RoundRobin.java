@@ -35,7 +35,7 @@ class RoundRobin {
             return;
         }
 
-        Process process = currentQueue.poll();       // 변경된 부분: remove(0) -> poll()
+        Process process = currentQueue.poll();
         int remainingTime =  process.getRemaining_time();
 
         if (remainingTime > runningTime) {
