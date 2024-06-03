@@ -2,7 +2,6 @@
 import java.util.*;
 
 class RoundRobin {
-    private static final int TIME_QUANTUM = 20;         // time quantum
     static int currentTime = 0;                         // 현재 시간
 
     private Queue queue = new Queue();
@@ -26,22 +25,17 @@ class RoundRobin {
         return true;
     }
 
-    void rrRun() {
-        processQueue(0, TIME_QUANTUM);
-    }
-
-    private void processQueue(int queueIndex, int runningTime) {
+    void rrRun(int queueIndex, int runningTime) {
 
         PriorityQueue<Process> currentQueue = queue.getQueue(queueIndex);
         String queueName = queue.getQueueName(queueIndex);
 
         if (currentQueue.isEmpty()) {                   // 현재 큐가 비어있는 경우
-            processQueue(queueIndex + 1, runningTime);     // 다음 큐로 메서드 실행
+            rrRun(queueIndex + 1, runningTime);     // 다음 큐로 메서드 실행
             return;
         }
 
         Process process = currentQueue.poll();       // 변경된 부분: remove(0) -> poll()
-//        Process process = currentQueue.remove(0);       // 현재 큐에서 프로세스 추출
         int remainingTime =  process.getRemaining_time();
 
         if (remainingTime > runningTime) {
@@ -67,9 +61,9 @@ class RoundRobin {
             // 프로세스를 종료시키고 남은 시간이 있을 경우
             if (remainingTime < runningTime) {
                 if (!currentQueue.isEmpty())        // 종료한 프로세스가 있던 큐에 다른 프로세스가 있는 경우
-                    processQueue(queueIndex, runningTime - remainingTime);
+                    rrRun(queueIndex, runningTime - remainingTime);
                 else if (queueIndex + 1 < queue.getQueueNum())      // 다음 큐가 있는 경우
-                    processQueue(queueIndex + 1, runningTime - remainingTime);
+                    rrRun(queueIndex + 1, runningTime - remainingTime);
             }
         }
     }
