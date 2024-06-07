@@ -27,7 +27,7 @@ class RoundRobin {
 
     void rrRun(int queueIndex, int runningTime) {
 
-        PriorityQueue<Process> currentQueue = queue.getQueue(queueIndex);
+        ArrayList<Process> currentQueue = queue.getQueue(queueIndex);
         String queueName = queue.getQueueName(queueIndex);
 
         if (currentQueue.isEmpty()) {                   // 현재 큐가 비어있는 경우
@@ -35,7 +35,7 @@ class RoundRobin {
             return;
         }
 
-        Process process = currentQueue.poll();
+        Process process = currentQueue.remove(0);
         int remainingTime =  process.getRemaining_time();
 
         if (remainingTime > runningTime) {
