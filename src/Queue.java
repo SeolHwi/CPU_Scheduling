@@ -3,18 +3,18 @@ import java.util.*;
 
 public class Queue {
 
-    // Process를 담는 ArrayList들을 리스트로 만든 queues
-    private List<ArrayList<Process>> queues;
+    // Process를 담는 LinkedList들을 리스트로 만든 queues
+    private List<LinkedList<Process>> queues;
     private List<String> queueNames;
 
     // 큐 생성
     public Queue() {
         queues = new ArrayList<>(Arrays.asList(
-                new ArrayList<>(),      // real_time
-                new ArrayList<>(),      // Q1
-                new ArrayList<>(),      // Q2
-                new ArrayList<>(),      // Q3
-                new ArrayList<>()       // Q4
+                new LinkedList<>(),      // real_time
+                new LinkedList<>(),      // Q1
+                new LinkedList<>(),      // Q2
+                new LinkedList<>(),      // Q3
+                new LinkedList<>()       // Q4
         ));
         queueNames = new ArrayList<>(Arrays.asList(
                 "real_time", "Q1", "Q2", "Q3", "Q4"
@@ -22,14 +22,14 @@ public class Queue {
     }
 
     // 각 큐를 반환하는 메서드
-    public ArrayList<Process> getQueue(int index) {
+    public LinkedList<Process> getQueue(int index) {
         return queues.get(index);
     }
 
     // 프로세스를 ArrayList에 저장
-    private void add(ArrayList<Process> arrayList, Process process, String queueName) {
-        arrayList.add(process);
-        QueueSort.sort(arrayList, queueName);
+    private void add(LinkedList<Process> linkedList, Process process, String queueName) {
+        linkedList.add(process);
+        QueueSort.sort(linkedList, queueName);
     }
 
     // 프로세스를 priority에 따라 큐에 분류

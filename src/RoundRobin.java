@@ -27,7 +27,7 @@ class RoundRobin {
 
     void rrRun(int queueIndex, int runningTime) {
 
-        ArrayList<Process> currentQueue = queue.getQueue(queueIndex);
+        LinkedList<Process> currentQueue = queue.getQueue(queueIndex);
         String queueName = queue.getQueueName(queueIndex);
 
         if (currentQueue.isEmpty()) {                   // 현재 큐가 비어있는 경우

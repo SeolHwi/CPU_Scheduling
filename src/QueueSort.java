@@ -1,10 +1,10 @@
 
-import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
 
 public class QueueSort {
 
-    public static void sort(ArrayList<Process> queue, String queueName) {
+    public static void sort(LinkedList<Process> queue, String queueName) {
 
         if (queueName.equals("real_time"))
             queue.sort(Comparator.comparingInt(Process::getPriority).reversed());
